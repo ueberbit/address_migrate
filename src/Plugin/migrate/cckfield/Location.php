@@ -67,7 +67,11 @@ class Location extends CckFieldPluginBase implements ContainerFactoryPluginInter
       [
         'plugin' => 'iterator',
         'process' => array(
-          'country_code' => 'country',
+          'country_code' => [
+            'plugin' => 'callback',
+            'callable' => 'strtoupper',
+            'source' => 'country',
+          ],
           // 'administrative_area' => '',
           'locality' => 'city',
           // 'dependent_locality' => 'province',
