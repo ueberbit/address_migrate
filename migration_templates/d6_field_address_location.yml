@@ -1,0 +1,31 @@
+id: d6_field_address_location
+label: Field configuration (Address, Location compontent)
+migration_tags:
+  - Drupal 6
+source:
+  plugin: d6_field_location
+  constants:
+    entity_type: node
+    langcode: en
+    type: address
+process:
+  entity_type: 'constants/entity_type'
+  status: active
+  langcode: 'constants/langcode'
+  field_name: field_name
+  type: 'constants/type'
+  cardinality:
+    plugin: static_map
+    bypass: true
+    source: multiple
+    map:
+      0: 1
+      1: -1
+  settings:
+    plugin: field_settings
+    source:
+      - '@type'
+      - global_settings
+      - type
+destination:
+  plugin: md_entity:field_storage_config
