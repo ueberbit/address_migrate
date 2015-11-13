@@ -1,0 +1,5 @@
+name: Address Migrate
+type: module
+description: Provides a migration path from addressfield or location module
+core: 8.x
+package: Migrate
