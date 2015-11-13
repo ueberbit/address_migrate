@@ -1,0 +1,65 @@
+id: d6_field_instance_address_location
+label: Field instance configuration (Adresss, Location compontent)
+migration_tags:
+  - Drupal 6
+source:
+  plugin: d6_field_instance_location
+  constants:
+    entity_type: node
+process:
+  field_type_exists:
+    -
+      plugin: migration
+      migration: d6_field_address_location
+      source:
+        - field_name
+    -
+      plugin: extract
+      index:
+        - 1
+    -
+      plugin: skip_on_empty
+      method: row
+  entity_type: 'constants/entity_type'
+  field_name:
+    -
+      plugin: migration
+      migration: d6_field_address_location
+      source:
+        - field_name
+    -
+      plugin: extract
+      index:
+        - 1
+  bundle:
+    -
+      plugin: migration
+      migration: d6_node_type
+      source: type_name
+    -
+      plugin: skip_on_empty
+      method: row
+  label: label
+  description: description
+  required: required
+  status: active
+  settings:
+    plugin: d6_field_field_settings
+    source:
+      - widget_type
+      - widget_settings
+      - global_settings
+  default_value_callback: ''
+  default_value:
+    plugin: d6_field_instance_defaults
+    source:
+      - widget_type
+      - widget_settings
+destination:
+  plugin: entity:field_config
+migration_dependencies:
+  required:
+    - d6_node_type
+    - d6_field
+    - d6_field_address_geofield
+    - d6_field_address_location
