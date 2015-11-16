@@ -1,0 +1,10 @@
+{
+  "name": "drupal/address_migrate",
+  "description": "Provides a migration path from addressfield or location module.",
+  "type": "drupal-module",
+  "extra": {
+    "branch-alias": {
+      "dev-8.x-1.x": "8.1.x-dev"
+    }
+  }
+}
