@@ -8,6 +8,7 @@
 namespace Drupal\address_migrate\Plugin\migrate\process;
 
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
@@ -27,7 +28,7 @@ class AddressMigrateLatLon extends ProcessPluginBase {
     if (count($value) == 2 && isset($value[0]) && isset($value[1])) {
       return \Drupal::service('geofield.wkt_generator')->WktBuildPoint($value);
     }
-    return NULL;
+    throw new MigrateSkipProcessException();
   }
 
 }
