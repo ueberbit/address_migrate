@@ -29,7 +29,12 @@ class AddressMigrateData extends ProcessPluginBase {
       throw new MigrateSkipProcessException();
     }
 
-    return $row->getSourceProperty('address_migrate_data/' . $value['lid']);
+    $source = 'address_migrate_data/' . $value['lid'];
+    if ($row->hasSourceProperty($source)) {
+      return $row->getSourceProperty($source);
+    }
+
+    throw new MigrateSkipProcessException();
   }
 
 }
