@@ -62,11 +62,11 @@ class Location extends CckFieldPluginBase implements ContainerFactoryPluginInter
     $process = [
       [
         'plugin' => 'address_migrate_data',
-        'source' => 'field_location'
+        'source' => $field_name
       ],
       [
         'plugin' => 'iterator',
-        'process' => array(
+        'process' => [
           'country_code' => [
             'plugin' => 'callback',
             'callable' => 'strtoupper',
@@ -81,7 +81,7 @@ class Location extends CckFieldPluginBase implements ContainerFactoryPluginInter
           'address_line2' => 'additional',
           'organization' => 'name',
           // 'recipient' => '',
-        ),
+        ],
       ]
     ];
     $migration->setProcessOfProperty($field_name, $process);
@@ -89,15 +89,19 @@ class Location extends CckFieldPluginBase implements ContainerFactoryPluginInter
     $process = [
       [
         'plugin' => 'address_migrate_data',
-        'source' => 'field_location'
+        'source' => $field_name,
       ],
       [
         'plugin' => 'iterator',
-        'source' => $field_name,
-        'process' => array(
-          'lat' => 'latitude',
-          'log' => 'lon'
-        ),
+        'process' => [
+          'value' => [
+            'plugin' => 'address_migrate_lat_lon',
+            'source' => [
+              'longitude',
+              'latitude'
+            ],
+          ],
+        ],
       ]
     ];
     // @todo: Use suffix from d6_field_address_geofield
