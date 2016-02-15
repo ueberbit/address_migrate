@@ -26,9 +26,12 @@ class AddressMigrateLatLon extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     if (count($value) == 2 && isset($value[0]) && isset($value[1])) {
+      if (empty($value[0]) && empty($value[1])) {
+        return NULL;
+      }
       return \Drupal::service('geofield.wkt_generator')->WktBuildPoint($value);
     }
-    throw new MigrateSkipProcessException();
+    return NULL;
   }
 
 }

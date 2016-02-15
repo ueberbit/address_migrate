@@ -23,7 +23,11 @@ function address_migrate_migrate_prepare_row(Row $row, MigrateSourceInterface $s
     $query->innerJoin('location_instance', 'li', 'li.lid = l.lid');
     $query->condition('li.vid', $row->getSourceProperty('vid'));
     $query->fields('l');
+    $query->addField('li', 'vid');
     $locations = $query->execute()->fetchAllAssoc('lid', PDO::FETCH_ASSOC);
+    if (!empty($locations)) {
+      $debug = 1;
+    }
     $row->setSourceProperty('address_migrate_data', $locations);
   }
 }
