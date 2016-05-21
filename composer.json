@@ -4,7 +4,7 @@
   "type": "drupal-module",
   "extra": {
     "branch-alias": {
-      "dev-8.x-1.x": "8.1.x-dev"
+      "dev-8.x-2.x": "8.2.x-dev"
     }
   }
 }
