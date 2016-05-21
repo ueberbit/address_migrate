@@ -8,8 +8,8 @@
 namespace Drupal\address_migrate\Plugin\migrate\cckfield;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate\Plugin\MigratePluginManager;
+use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate_drupal\Plugin\migrate\cckfield\CckFieldPluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
